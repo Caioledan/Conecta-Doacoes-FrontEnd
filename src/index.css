@@ -1,5 +1,5 @@
 @import "tailwindcss";
 
-@theme {
+:root {
     --color-dark-green: #388E3C;
 }
