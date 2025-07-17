@@ -1,4 +1,4 @@
-function header_guys(){
+function Header_guys(){
     return (
         <div className="2xl:mt-24 xl:mt-38">
             <img src="./src/assets/images/header_guys.png" alt="" className="max-w-none 2xl:w-160 xl:w-130"/>
@@ -6,4 +6,4 @@ function header_guys(){
     )
 }
 
-export default header_guys;
+export default Header_guys;
