@@ -4,7 +4,7 @@ interface ItemsCardProps {
   item: ItemForTrade;
 }
 
-function Donation_Carts({ item }: ItemsCardProps){
+function Donation_Cards({ item }: ItemsCardProps){
     return (
         <a href="" className="hover:scale-102 duration-200 transform">
             <div className="min-w-70 w-70 h-100 bg-white border flex flex-col justify-center items-center text-start font-epilogue rounded-xl">
@@ -37,4 +37,4 @@ function Donation_Carts({ item }: ItemsCardProps){
   )
 }
 
-export default Donation_Carts;
+export default Donation_Cards;
