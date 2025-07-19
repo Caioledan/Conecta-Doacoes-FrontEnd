@@ -2,10 +2,10 @@
 @import "tailwindcss";
 
 
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
 
 @theme{
     --color-dark-green: #388E3C;
-    --color-light-green: #66BB6A;
-
-    --font-epilogue: "Epilogue";
 }
