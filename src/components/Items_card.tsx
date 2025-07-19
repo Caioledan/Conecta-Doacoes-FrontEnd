@@ -6,7 +6,8 @@ interface ItemsCardProps {
 
 function Items_card({ item }: ItemsCardProps) {
   return (
-    <div className=" w-85 h-100 bg-white border flex flex-col justify-center items-center text-start font-epilogue rounded-xl shadow-xl">
+    <a href="" className="hover:scale-102 duration-200 transform">
+      <div className="min-w-70 w-70 h-100 bg-white border flex flex-col justify-center items-center text-start font-epilogue rounded-xl">
 
       <img
         src={item.imageUrl}
@@ -31,6 +32,8 @@ function Items_card({ item }: ItemsCardProps) {
       </div>
       
     </div>
+    </a>
+    
   )
 }
 
