@@ -19,7 +19,7 @@ function Trade_items(){
     }
 
     return (
-        <section className="w-full h-screen flex items-center justify-center flex-col">
+        <section className="flex flex-col">
             <div className="w-[75vw]">
                 <h1 className="text-[var(--color-dark-green)] text-3xl font-semibold font-epilogue ml-24">Itens para troca</h1>
                 <div className="flex items-center gap-5" >

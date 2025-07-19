@@ -1,10 +1,13 @@
 import './App.css'
-import Header_main from './components/Header_main'
+import Trade_items from './components/Trade_Items'
 
 function App() {
  
   return (
-    <Header_main />
+    <div>
+    <Trade_items/>
+    </div>
+
   )
 }
 
