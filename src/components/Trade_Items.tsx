@@ -27,7 +27,7 @@ function Trade_items(){
                     <div className="flex overflow-x-auto scroll-smooth no-scrollbar" ref={carousel}>
                         
                         <div className='flex justify-center items-center mb-5 gap-10 mt-6 mx-3'>
-                            {tradeItemsData.map((item) => (
+                            {tradeItemsData.filter(item => item.type === 'Troca').map((item) => (
                             <Items_card key={item.id} item={item} />
                             ))}
                         </div>
