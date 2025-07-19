@@ -20,8 +20,8 @@ function Trade_items(){
 
     return (
         <section className="flex flex-col">
-            <div className="w-[75vw]">
-                <h1 className="text-[var(--color-dark-green)] text-3xl font-semibold font-epilogue ml-24">Itens para troca</h1>
+            <div className="w-[75vw] text-end">
+                <h1 className="text-[var(--color-dark-green)] text-3xl font-semibold font-epilogue ml-24 text-start">Itens para troca</h1>
                 <div className="flex items-center gap-5" >
                     <button onClick={handleLeftClick} className="hover:cursor-pointer hover:scale-120 duration-200 transform"><ChevronLeft size={64}/></button>
                     <div className="flex overflow-x-auto scroll-smooth no-scrollbar" ref={carousel}>
@@ -34,9 +34,7 @@ function Trade_items(){
                     </div>
                     <button onClick={handleRightClick} className="hover:cursor-pointer hover:scale-120 duration-200 transform"><ChevronRight size={64}/></button>
                 </div>
-                
-
-
+                <a href="" className="text-blue-500 underline text-xl mr-25">Ver todos os itens</a>
             </div>
   
         </section >
