@@ -1,4 +1,5 @@
 import './App.css'
+import CTA from './components/CTA'
 import Donation_Items from './components/Donation_Items'
 import Header_main from './components/Header_main'
 import Trade_items from './components/Trade_Items'
@@ -12,6 +13,7 @@ function App() {
         < Trade_items />
         < Donation_Items />
       </div>
+      <CTA /> 
     </div>
   )
 }
