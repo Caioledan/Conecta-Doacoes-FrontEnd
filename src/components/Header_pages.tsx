@@ -1,9 +1,9 @@
 import { Search } from "lucide-react";
 import Dropdown from "./Dropdown";
 
-function Header_login(){
+function Header_pages(){
     return (
-        <div>
+        <header>
             <div className="h-30 flex justify-between p-4 items-center mx-4">
                 <a href=""><img src="src\assets\images\logo-cortada.png" alt="" className="h-20"/></a>
                 <div className="flex items-center bg-white w-90 h-12 rounded-xl shadow-md mr-4 border">
@@ -19,10 +19,10 @@ function Header_login(){
                     <li className="text-xl hover:cursor-pointer"><a href="#">Ajuda</a></li>
                 </ul> 
             </div>
-        </div>
+        </header>
 
 
     ) 
 }
 
-export default Header_login;
+export default Header_pages;
