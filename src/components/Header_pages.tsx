@@ -5,7 +5,7 @@ function Header_pages(){
     return (
         <header>
             <div className="h-30 flex justify-between p-4 items-center mx-4">
-                <a href=""><img src="src\assets\images\logo-cortada.png" alt="" className="h-20"/></a>
+                <a href="/"><img src="src\assets\images\logo-cortada.png" alt="" className="h-20"/></a>
                 <div className="flex items-center bg-white w-90 h-12 rounded-xl shadow-md mr-4 border">
                     <input className="placeholder-gray-800 text-gray-800 bg-transparent w-full focus:outline-none px-2 text-lg" type="text"  placeholder="Pesquisar" />
                     <button className="hover:cursor-pointer rounded-full text-gray-800 px-2"><Search/></button>
