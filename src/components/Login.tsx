@@ -11,7 +11,7 @@ function Login(){
                 <ul className="flex space-x-2">
                     <a href="" className="text-blue-500" ><li>Esqueceu sua senha?</li></a>
                     <li>|</li>
-                    <a href="" className="text-blue-500" ><li>Ainda não é registrado?</li></a>
+                    <a href="/cadastro" className="text-blue-500" ><li>Ainda não é registrado?</li></a>
                 </ul>
             </div>
 
