@@ -6,7 +6,7 @@ import MidHeaderHome from "./MidHeaderHome";
 
 function Header_main(){
     return (
-        <div className="bg-[var(--color-light-green)] h-150 w-screen flex flex-col">
+        <header className="bg-[var(--color-light-green)] h-150 w-screen flex flex-col">
             <div className="flex justify-around">
                 <Logo />
                 <MidHeaderHome />
@@ -16,7 +16,7 @@ function Header_main(){
                 <Header_text />
                 <Header_guys/>
             </div>
-        </div>
+        </header>
     )
 }
 
