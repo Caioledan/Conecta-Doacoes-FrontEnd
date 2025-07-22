@@ -1,6 +1,6 @@
 function Footer_Pages(){
     return (
-        <div className="bg-dark-green font-epilogue text-white flex justify-around h-50 items-center gap-50">
+        <footer className="bg-dark-green font-epilogue text-white flex justify-around h-50 items-center gap-50">
             <img src="src\assets\images\logo_footer_pages.png" alt="" className="h-20"/>
             <div className="flex space-x-10 w-100">
                 <ul className="flex flex-col gap-6">
@@ -16,7 +16,7 @@ function Footer_Pages(){
                 <p>Newsletter</p>
                 <input type="email" placeholder="Insira seu e-mail aqui" className="focus:outline-none"/>
             </div>
-        </div>
+        </footer>
     )
 }
 
