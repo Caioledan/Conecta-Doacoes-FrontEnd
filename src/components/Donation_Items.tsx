@@ -34,7 +34,7 @@ function Donation_Items(){
                     </div>
                     <button onClick={handleRightClick} className="hover:cursor-pointer hover:scale-120 duration-200 transform"><ChevronRight size={64}/></button>
                 </div>
-                <a href="" className="text-blue-500 underline text-xl mr-25 ">Ver todos os itens</a>
+                <a href="/items" className="text-blue-500 underline text-xl mr-25 ">Ver todos os itens</a>
             </div>
         </section >
     )
