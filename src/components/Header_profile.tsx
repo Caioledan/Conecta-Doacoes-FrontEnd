@@ -1,13 +1,20 @@
 import { Search } from "lucide-react";
 import Dropdown from "./Dropdown";
+import { useNavigate } from "react-router-dom";
 
 function Header_profile() {
+  const navigate = useNavigate();
+
+  const handleProfileClick = () => {
+    navigate("/profile");
+  };
+
   return (
     <header>
       <div className="h-30 flex justify-between p-4 items-center mx-4">
         <a href="/">
           <img
-            src="src\assets\images\logo-cortada.png"
+            src="src/assets/images/logo-cortada.png"
             alt=""
             className="h-20"
           />
@@ -29,8 +36,11 @@ function Header_profile() {
           <li className="text-xl hover:cursor-pointer">
             <a href="#">Chats</a>
           </li>
-          <li className="text-xl hover:cursor-pointer">
-            <a href="#">Meu perfil</a>
+          <li 
+            className="text-xl hover:cursor-pointer"
+            onClick={handleProfileClick}
+          >
+            Meu perfil
           </li>
           <li className="text-xl hover:cursor-pointer">
             <a href="#">Ajuda</a>
