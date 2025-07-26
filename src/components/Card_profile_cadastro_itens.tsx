@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import IconeUsuario from "./Icone_user";
 
-export default function Card_profile() {
+export default function Card_profile_cadastro_itens() {
   return (
     <div className="bg-white rounded-[20px] border border-black shadow-lg p-6 h-fit">
       <div className="flex items-center mb-6">
@@ -22,15 +21,6 @@ export default function Card_profile() {
           <br />
           Cidade Universitária
         </p>
-      </div>
-
-      <div className="text-center">
-        <Link
-          to="/editar-perfil"
-          className="font-epilogue text-lg lg:text-xl font-normal text-conecta-blue underline hover:text-blue-600 transition-colors"
-        >
-          editar dados
-        </Link>
       </div>
     </div>
   );
