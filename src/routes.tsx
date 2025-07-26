@@ -3,7 +3,9 @@ import Home_page from "./pages/Home_page";
 import Login_page from "./pages/Login_page";
 import Cadastro_page from "./pages/Cadastro_page";
 import Items_Page from "./pages/Items_page";
-
+import Profile from "./pages/Profile_page";
+import Cadastro_itens_page from "./pages/Cadastro_itens_page";
+import Item_page from "./pages/Item_page";
 function AppRoutes() {
   return (
     <BrowserRouter>
@@ -12,6 +14,9 @@ function AppRoutes() {
         <Route path="/login" element={<Login_page />}></Route>
         <Route path="/cadastro" element={<Cadastro_page />}></Route>
         <Route path="/items" element={<Items_Page />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/cadastroItem" element={<Cadastro_itens_page />}></Route>
+        <Route path="/Item" element={<Item_page />}></Route>
       </Routes>
     </BrowserRouter>
   );
