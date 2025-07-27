@@ -8,38 +8,36 @@ import { useItens } from "../hooks/useItens";
 function Items_Page() {
     const ITEMS_PER_PAGE = 6;
     const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
-    const [filterType, setFilterType] = useState<'TODOS' | 'DOACAO' | 'TROCA'>('TODOS');
-    const [filterCategory, setFilterCategory] = useState<string | null>(null);
-    const { itens, loading, error, refreshItens } = useItens();
 
-    const filteredItems = itens.filter(item => {
-        const typeMatch = filterType === 'TODOS' || item.tipo === filterType;
-        const categoryMatch = !filterCategory || item.categoria === filterCategory;
-        return typeMatch && categoryMatch;
-    });
+    const { 
+        itens, 
+        loading, 
+        error, 
+        resetFilters, 
+        filterCategory,
+        setFilterCategory,
+        filterLocation,
+        setFilterLocation,
+        filterType,
+        setFilterType
+    } = useItens();
 
-    const visibleItems = filteredItems.slice(0, visibleCount);
-    const hasMoreItems = visibleCount < filteredItems.length;
-    const hasNoItems = !loading && !error && filteredItems.length === 0;
+
+    const visibleItems = itens.slice(0, visibleCount);
+    const hasMoreItems = visibleCount < itens.length;
+    const hasNoItems = !loading && !error && itens.length === 0;
 
     const handleLoadMore = () => {
         setVisibleCount((prevCount) => prevCount + ITEMS_PER_PAGE);
     };
+    
 
-    const handleFilterChange = (type: 'TODOS' | 'DOACAO' | 'TROCA') => {
-        setFilterType(type);
-        setVisibleCount(ITEMS_PER_PAGE);
-    };
-
-    const handleCategoryChange = (category: string | null) => {
-        setFilterCategory(category);
-        setVisibleCount(ITEMS_PER_PAGE);
-    };
-
-    const handleResetFilters = () => {
-        setFilterType('TODOS');
-        setFilterCategory(null);
-        setVisibleCount(ITEMS_PER_PAGE);
+    const getPageTitle = () => {
+        if (filterCategory) return `Itens na categoria ${filterCategory.toLowerCase().replace('_', ' ')}`;
+        if (filterLocation) return `Itens na localização ${filterLocation.toLowerCase().replace('_', ' ')}`;
+        if (filterType === 'DOACAO') return 'Itens para doação';
+        if (filterType === 'TROCA') return 'Itens para troca';
+        return 'Itens disponíveis';
     };
 
     if (loading) {
@@ -61,7 +59,7 @@ function Items_Page() {
                 <div className="flex flex-col items-center justify-center h-64 gap-4">
                     <p className="text-red-500">{error}</p>
                     <button 
-                        onClick={refreshItens}
+                        onClick={resetFilters}
                         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                     >
                         Tentar novamente
@@ -71,66 +69,52 @@ function Items_Page() {
             </div>
         );
     }
+    
+    return (
+        <div>
+            <Header_pages />
+            <h1 className="font-epilogue text-3xl ml-30 mt-10 mb-10">
+                {getPageTitle()}
+            </h1>
+            <div className="flex ml-30 gap-20">
+                <Menu_lateral 
+                    onFilterTypeChange={(type) => {
+                        setFilterType(type);
+                        setVisibleCount(ITEMS_PER_PAGE);
+                    }}
+                    onCategoryChange={(category) => {
+                        setFilterCategory(category);
+                        setVisibleCount(ITEMS_PER_PAGE);
+                    }}
+                    onLocationChange={(location) => {
+                        setFilterLocation(location);
+                        setVisibleCount(ITEMS_PER_PAGE);
+                    }}
+                    currentFilterType={filterType}
+                    currentCategory={filterCategory}
+                    currentLocation={filterLocation}
+                />
 
-    if (hasNoItems) {
-        return (
-            <div>
-                <Header_pages />
-                <h1 className="font-epilogue text-3xl ml-30 mt-10 mb-10">
-                    {filterCategory 
-                        ? `Itens na categoria ${filterCategory.toLowerCase()}`
-                        : "Itens disponíveis"}
-                    {filterType !== 'TODOS' && ` para ${filterType.toLowerCase()}`}
-                </h1>
-                <div className="flex ml-30 gap-20">
-                    <Menu_lateral 
-                        onFilterChange={handleFilterChange}
-                        currentFilter={filterType}
-                        onCategoryChange={handleCategoryChange}
-                        currentCategory={filterCategory}
-                    />
+                {hasNoItems ? (
                     <div className="w-2/3 p-10 flex flex-col items-center justify-center h-64">
-                        <p className="text-gray-600 text-xl">
-                            {filterCategory 
-                                ? `Nenhum item encontrado na categoria ${filterCategory.toLowerCase()}`
-                                : filterType !== 'TODOS'
-                                    ? `Nenhum item para ${filterType.toLowerCase()} disponível`
-                                    : "Nenhum item disponível no momento"}
-                        </p>
+                        <p className="text-gray-600 text-xl">Nenhum item encontrado com os filtros selecionados.</p>
                         <button 
-                            onClick={handleResetFilters}
+                            onClick={() => {
+                                resetFilters();
+                                setVisibleCount(ITEMS_PER_PAGE);
+                            }}
                             className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                         >
                             Limpar filtros
                         </button>
                     </div>
-                </div>
-                <Footer_Pages />
-            </div>
-        );
-    }
-
-    return (
-        <div>
-            <Header_pages />
-            <h1 className="font-epilogue text-3xl ml-30 mt-10 mb-10">
-                {filterCategory 
-                    ? `Itens na categoria ${filterCategory.toLowerCase()}`
-                    : "Itens disponíveis"}
-                {filterType !== 'TODOS' && ` para ${filterType.toLowerCase()}`}
-            </h1>
-            <div className="flex ml-30 gap-20">
-                <Menu_lateral 
-                    onFilterChange={handleFilterChange}
-                    currentFilter={filterType}
-                    onCategoryChange={handleCategoryChange}
-                    currentCategory={filterCategory}
-                />
-                <Items_grid 
-                    items={visibleItems} 
-                    onLoadMore={handleLoadMore} 
-                    hasMore={hasMoreItems}
-                />
+                ) : (
+                    <Items_grid 
+                        items={visibleItems} 
+                        onLoadMore={handleLoadMore} 
+                        hasMore={hasMoreItems}
+                    />
+                )}
             </div>
             <Footer_Pages />
         </div>
