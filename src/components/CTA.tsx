@@ -3,7 +3,7 @@ import Logo from "./Logo";
 
 function CTA(){
     return (
-        <div className="flex justify-center items-center gap-30 bg-soft-gray h-120 font-epilogue">
+        <div className="flex justify-around items-center gap-30 bg-soft-gray h-120 font-epilogue ">
             <Logo/>
             <div className="">
                 <ul className="w-100 text-2xl space-y-4">

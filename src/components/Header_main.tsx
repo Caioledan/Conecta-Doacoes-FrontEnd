@@ -151,7 +151,9 @@ function Header_main() {
           )}
         </div>
       </div>
-
+      <div className="flex justify-center items-center w-full">
+        <hr className="w-[80%] border-t border-white/50" />
+      </div>
       {/* title and Guys */}
       <div className="md:px-5 xl:px-20 flex justify-between md:gap-10 xl:gap-28 md:flex-row flex-col pt-10">
         <div className="text-white justify-start items-center pb-10 pl-10 font-epilogue flex-none w-full md:w-20 xl:w-152 min-w-102">
