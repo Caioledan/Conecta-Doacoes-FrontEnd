@@ -1,88 +1,81 @@
-import Header from "../components/Header_pages";
-import Footer from "../components/Footer_Pages";
-import ProductShowcase from "../components/Vitrine_Produtos";
-import Estrela_Avaliacao from "../components/Estrela_Avaliacao";
+import React, { useEffect, useState, useCallback } from "react";
+import { useParams } from 'react-router-dom';
+import type { Itens } from '../interfaces/Iitens';
+import ItemImage from '../components/ItemImage';
+import ItemInfo from '../components/ItemInfo';
+import CardVendedor from '../components/CardVendedor';
+import { itensApi } from "../api/itensApi";
+import Header_pages from "../components/Header_pages";
+import Footer_Pages from "../components/Footer_Pages";
 
-export default function Item_page() {
+const Item_page: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const [item, setItem] = useState<Itens | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+
+  const fetchItem = useCallback(async () => {
+    if (!id) return;
+    
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const itemId = parseInt(id);
+      if (isNaN(itemId)) {
+        throw new Error('ID inválido');
+      }
+      
+      const itemData = await itensApi.getItemById(itemId);
+      setItem(itemData);
+      
+    } catch (err) {
+      setError('Erro ao carregar item');
+      console.error('Erro na requisição:', err);
+    } finally {
+      setLoading(false);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    fetchItem();
+  }, [fetchItem]);
+
+  const handleContactClick = () => {
+    if (item) {
+      console.log('Contacting seller:', item.usuario.nome);
+
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white font-epilogue">
-      <Header />
-
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-          <div className="lg:col-span-1">
-            <div className="aspect-square rounded-2xl overflow-hidden">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/66952cd2a29f94dc7b1ba4c8dd9b13c183e021b5?width=1000"
-                alt="Livros Colleen Hoover"
-                className="w-full h-full object-cover"
-              />
-            </div>
+    <div className="min-h-screen bg-white font-epilogue flex flex-col">
+      <Header_pages />
+      
+      <main className="container mx-auto px-4 py-8 flex-grow">
+        {loading ? (
+          <div className="text-center">Carregando...</div>
+        ) : error ? (
+          <div className="text-center text-red-500">{error}</div>
+        ) : !item ? (
+          <div className="text-center">Item não encontrado</div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-15 mb-16">
+            <ItemImage item={item} />
+            <ItemInfo item={item} />
+            <CardVendedor 
+              item={item} 
+              onContactClick={handleContactClick} 
+              className="lg:col-span-1 space-y-6 mt-28" 
+            />
           </div>
-
-          <div className="lg:col-span-1 space-y-6">
-            <div>
-              <h1 className="text-4xl lg:text-5xl font-normal text-black mb-4">
-                Livros Colleen Hoover
-              </h1>
-              <div className="w-full h-px bg-gray-300 mb-6"></div>
-            </div>
-
-            <div className="space-y-4 text-2xl lg:text-3xl text-black leading-relaxed">
-              <p>3 Livros da autora Colleen Hoover:</p>
-              <ul className="ml-4 space-y-2">
-                <li>• Verity</li>
-                <li>• É assim que acaba</li>
-                <li>• É assim que começa</li>
-              </ul>
-
-              <div className="pt-4">
-                <p className="font-bold">Descrição:</p>
-                <p>Livros semi-novos, com poucas marcas de uso</p>
-              </div>
-
-              <div className="pt-4">
-                <p className="font-bold">Categoria:</p>
-                <p>Livros</p>
-              </div>
-
-              <div className="pt-4">
-                <p className="font-bold">Tipo:</p>
-                <p>Troca</p>
-              </div>
-
-              <div className="pt-4">
-                <p className="font-bold">Localização:</p>
-                <p>Cidade Universitária</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-1 space-y-6 mt-28">
-            <div className="bg-gray-200 rounded-2xl p-6 space-y-4">
-              <h3 className="text-2xl font-normal text-black">
-                Livros Colleen Hoover
-              </h3>
-
-              <div className="text-lg text-gray-600">
-                <p>Item de:</p>
-                <p className="font-bold underline">Antônio Carlos Oliveira</p>
-              </div>
-
-              <Estrela_Avaliacao rating={5} />
-
-              <p className="text-lg text-gray-600">Item para troca</p>
-
-              <button className="w-full bg-orange-400 hover:bg-orange-600 text-black text-xl py-6 rounded-2xl">
-                Entrar em contato
-              </button>
-            </div>
-          </div>
-        </div>
+        )}
       </main>
-
-      <ProductShowcase />
-      <Footer />
+      
+      <Footer_Pages />
     </div>
   );
-}
+};
+
+export default Item_page;

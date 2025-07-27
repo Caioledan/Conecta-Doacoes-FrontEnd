@@ -4,9 +4,9 @@ import type { Itens } from "../interfaces/Iitens";
 
 export const useItens = () => {
   const [itens, setItens] = useState<Itens[]>([]);
+  const [currentItem, setCurrentItem] = useState<Itens | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
 
   const fetchItens = async () => {
     try {
@@ -22,6 +22,21 @@ export const useItens = () => {
     }
   };
 
+  const fetchItemById = async (id: number) => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await itensApi.getItemById(id);
+      setCurrentItem(data);
+      return data;
+    } catch (err) {
+      setError("Erro ao carregar item");
+      console.error("Erro na requisição:", err);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fetchItensTroca = async () => {
     try {
@@ -37,7 +52,6 @@ export const useItens = () => {
     }
   };
 
-
   const fetchItensDoacao = async () => {
     try {
       setLoading(true);
@@ -52,11 +66,9 @@ export const useItens = () => {
     }
   };
 
-
   useEffect(() => {
     fetchItens();
   }, []);
-
 
   const refreshItens = () => {
     fetchItens();
@@ -72,8 +84,10 @@ export const useItens = () => {
 
   return {
     itens,
+    currentItem,
     loading,
     error,
+    fetchItemById,
     refreshItens,
     fetchItens,
     fetchItensTroca,
