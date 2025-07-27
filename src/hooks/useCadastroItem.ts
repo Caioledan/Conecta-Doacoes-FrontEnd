@@ -10,8 +10,8 @@ export const useCadastroItem = () => {
     categoria: "",
     condicao: "",
     localizacao: "",
-    usuarioId: 1,
     tipo: "",
+    usuarioId: localStorage.getItem("currentUserId") ?? "",
   });
 
   const [arquivoImagem, setArquivoImagem] = useState<File | null>(null);
@@ -42,8 +42,8 @@ export const useCadastroItem = () => {
       categoria: "",
       condicao: "",
       localizacao: "",
-      usuarioId: 1,
       tipo: "",
+      usuarioId: localStorage.getItem("currentUserId") ?? "",
     });
     setArquivoImagem(null);
   };

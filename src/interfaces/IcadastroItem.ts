@@ -3,7 +3,7 @@ export interface IcadastroItems {
     descricao: string;
     categoria: string;
     condicao: string;
-    localizacao: string;
-    usuarioId: number;
     tipo: string;
+    localizacao: string;
+    usuarioId: string;
 }
