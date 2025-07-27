@@ -35,4 +35,9 @@ export class itensApi {
     return response.data;
   }
 
+  static async getPorLocalizacao(localizacao: string): Promise<Itens[]>{
+    const response = await api.get<Itens[]>(`/itens/localizacao/${localizacao}`);
+    return response.data;
+  }
+
 }
