@@ -1,6 +1,7 @@
 import type { IAuthResponse } from "../interfaces/IAuthResponse";
 import type { ILoginCredentials } from "../interfaces/IloginCredentials";
 import api from "../services/Login/api";
+import { userApi } from "./userApi";
 
 
 export class LoginApi {
@@ -18,9 +19,12 @@ export class LoginApi {
         }
       );
 
+      
 
       if (response.data.token) {
         localStorage.setItem("authToken", response.data.token);
+        const currentUser = userApi.getUser();
+        localStorage.setItem("currentUserId", ((await currentUser).id).toString());
         api.defaults.headers.common["X-Auth-Token"] = response.data.token;
       }
 

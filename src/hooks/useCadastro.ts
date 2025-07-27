@@ -35,7 +35,7 @@ export const useCadastro = () => {
 
     try {
       const apiUrl =
-        "https://conecta-doacoes-back-api.onrender.com/api/usuarios/cadastrar";
+        "http://localhost:8080/api/usuarios/cadastrar";
         
 
       const response = await axios.post<ApiResponse>(apiUrl, formData);
