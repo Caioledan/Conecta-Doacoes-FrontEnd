@@ -12,6 +12,7 @@ export const useCadastroItem = () => {
     localizacao: "",
     tipo: "",
     usuarioId: localStorage.getItem("currentUserId") ?? "",
+    arquivoImagem: "",
   });
 
   const [arquivoImagem, setArquivoImagem] = useState<File | null>(null);
@@ -44,6 +45,7 @@ export const useCadastroItem = () => {
       localizacao: "",
       tipo: "",
       usuarioId: localStorage.getItem("currentUserId") ?? "",
+      arquivoImagem: "",
     });
     setArquivoImagem(null);
   };
@@ -71,8 +73,6 @@ export const useCadastroItem = () => {
       formData.append("localizacao", itemFormData.localizacao.toUpperCase());
       formData.append("tipo", itemFormData.tipo.toUpperCase());
       formData.append("usuarioId", itemFormData.usuarioId.toString());
-      
-
       formData.append("arquivoImagem", arquivoImagem);
 
       console.log("Dados sendo enviados:");
@@ -118,3 +118,4 @@ export const useCadastroItem = () => {
     cadastrarItem,
   };
 };
+

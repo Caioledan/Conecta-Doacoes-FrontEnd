@@ -22,7 +22,7 @@ function Items_Page() {
     return (
       <div>
         <Header_pages />
-        <div className="flex justify-center items-center h-64">
+        <div className="flex justify-center items-center h-130">
           <p>Carregando itens...</p>
         </div>
         <Footer_Pages />

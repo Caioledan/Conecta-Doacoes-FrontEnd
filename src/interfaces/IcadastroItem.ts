@@ -6,4 +6,5 @@ export interface IcadastroItems {
     tipo: string;
     localizacao: string;
     usuarioId: string;
+    arquivoImagem: string;
 }

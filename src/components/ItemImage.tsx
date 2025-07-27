@@ -17,7 +17,7 @@ const ItemImage: React.FC<ItemImageProps> = ({ item }) => {
         <img
           src={imageSrc}
           alt={item.nome}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
           onError={(e) => {
             (e.target as HTMLImageElement).src = 'https://via.placeholder.com/500';
           }}
