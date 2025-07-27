@@ -17,6 +17,7 @@ function AppRoutes() {
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/cadastroItem" element={<Cadastro_itens_page />}></Route>
         <Route path="/Item" element={<Item_page />}></Route>
+        <Route path="/item/:id" element={<Item_page />} />
       </Routes>
     </BrowserRouter>
   );

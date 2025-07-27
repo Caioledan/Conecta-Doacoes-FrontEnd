@@ -1,23 +1,23 @@
 import type { Itens } from "../interfaces/Iitens";
+import { Link } from "react-router-dom";
 
 interface ItemsCardProps {
   item: Itens;
 }
 
 function Items_card({ item }: ItemsCardProps) {
-
   const imageSrc = item.dataItem 
     ? `data:${item.dataItem.tipoArquivo};base64,${item.dataItem.imagemItem}`
     : '';
 
-    function capitalizeFirstLetter(str: string) {
-      if (!str) return str;
-      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-    }
+  function capitalizeFirstLetter(str: string) {
+    if (!str) return str;
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
 
   return (
-    <a href={`/item/${item.id}`} className="hover:scale-102 duration-200 transform">
-      <div className="min-w-70 w-70 h-110 bg-white border flex flex-col justify-center items-center text-start font-epilogue rounded-xl overflow-hidden">
+    <Link to={`/item/${item.id}`} className="hover:scale-102 duration-200 transform block">
+      <div className="min-w-70 w-70 h-110 bg-white border flex flex-col justify-center items-center text-start font-epilogue rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
         {imageSrc && (
           <img
             src={imageSrc}
@@ -31,7 +31,7 @@ function Items_card({ item }: ItemsCardProps) {
             {item.nome}
           </h3>
 
-          <div className="text-sm text-gray-600 mt-2 h-10">
+          <div className="text-sm text-gray-600 mt-2 h-10 line-clamp-2">
             <p>{item.descricao}</p>
           </div>
 
@@ -51,9 +51,8 @@ function Items_card({ item }: ItemsCardProps) {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
-
 
 export default Items_card;
