@@ -31,7 +31,7 @@ export default function Form_Cadastrar_item() {
       </h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Coluna da Imagem e Categoria */}
+
         <div className="space-y-6">
           <div className="text-center">
             <input
@@ -63,6 +63,34 @@ export default function Form_Cadastrar_item() {
 
           <div>
             <label className="text-[18px] font-normal text-black block mb-2">
+              Tipo
+            </label>
+            <div className="space-y-2">
+              <label className="flex items-center space-x-2">
+                <input 
+                  type="radio" 
+                  name="tipo" 
+                  value="DOACAO" 
+                  checked={itemFormData.tipo === "DOACAO"}
+                  onChange={handleChange}
+                />
+                <span className="text-[16px]">Doação</span>
+              </label>
+              <label className="flex items-center space-x-2">
+                <input 
+                  type="radio" 
+                  name="tipo" 
+                  value="TROCA" 
+                  checked={itemFormData.tipo === "TROCA"}
+                  onChange={handleChange}
+                />
+                <span className="text-[16px]">Troca</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label className="text-[18px] font-normal text-black block mb-2">
               Categoria
             </label>
             <div className="relative w-full max-w-[260px]">
@@ -76,7 +104,6 @@ export default function Form_Cadastrar_item() {
                 <option value="" disabled>
                   Selecione
                 </option>
-                {/* CORREÇÃO: Valores ajustados para provável correspondência com o Enum do backend */}
                 <option value="ROUPA">Roupas</option>
                 <option value="ELETRONICO">Eletrônicos</option>
                 <option value="LIVRO">Livros</option>
@@ -87,9 +114,7 @@ export default function Form_Cadastrar_item() {
           </div>
         </div>
 
-        {/* Coluna dos outros campos (sem alterações) */}
         <div className="space-y-6">
-          {/* ... Nenhuma alteração nos campos de Nome, Descrição, Localização e Condição ... */}
           <div>
             <label className="text-[18px] font-normal text-black block mb-2">
               Nome

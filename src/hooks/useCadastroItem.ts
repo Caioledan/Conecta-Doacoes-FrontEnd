@@ -11,6 +11,7 @@ export const useCadastroItem = () => {
     condicao: "",
     localizacao: "",
     usuarioId: 1,
+    tipo: "",
   });
 
   const [arquivoImagem, setArquivoImagem] = useState<File | null>(null);
@@ -42,6 +43,7 @@ export const useCadastroItem = () => {
       condicao: "",
       localizacao: "",
       usuarioId: 1,
+      tipo: "",
     });
     setArquivoImagem(null);
   };
@@ -67,6 +69,7 @@ export const useCadastroItem = () => {
       formData.append("categoria", itemFormData.categoria.toUpperCase());
       formData.append("condicao", itemFormData.condicao.toUpperCase());
       formData.append("localizacao", itemFormData.localizacao.toUpperCase());
+      formData.append("tipo", itemFormData.tipo.toUpperCase());
       formData.append("usuarioId", itemFormData.usuarioId.toString());
       
 

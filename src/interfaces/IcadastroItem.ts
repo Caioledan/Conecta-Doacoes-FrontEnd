@@ -5,4 +5,5 @@ export interface IcadastroItems {
     condicao: string;
     localizacao: string;
     usuarioId: number;
+    tipo: string;
 }
