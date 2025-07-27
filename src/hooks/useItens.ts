@@ -4,15 +4,22 @@ import type { Itens } from "../interfaces/Iitens";
 
 type FilterType = 'TODOS' | 'DOACAO' | 'TROCA';
 
-export const useItens = () => {
+export const useItens = (initialFilters: { category?: string | null } = {}) => {
   const [itens, setItens] = useState<Itens[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-
-  const [filterCategory, setFilterCategory] = useState<string | null>(null);
+  const [filterCategory, setFilterCategory] = useState<string | null>(initialFilters.category || null);
   const [filterLocation, setFilterLocation] = useState<string | null>(null);
   const [filterType, setFilterType] = useState<FilterType>('TODOS');
+
+  useEffect(() => {
+
+    if (initialFilters.category !== filterCategory) {
+      setFilterCategory(initialFilters.category || null);
+    }
+
+  }, [initialFilters.category]);
 
   useEffect(() => {
     const fetchFilteredItens = async () => {
