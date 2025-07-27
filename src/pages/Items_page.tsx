@@ -6,16 +6,17 @@ import Footer_Pages from "../components/Footer_Pages";
 import { useItens } from "../hooks/useItens";
 
 function Items_Page() {
-  const ITEMS_PER_PAGE = 6;
-  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
-  const { itens, loading, error, refreshItens } = useItens();
+    const ITEMS_PER_PAGE = 6;
+    const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+    const { itens, loading, error, refreshItens } = useItens();
 
-  const handleLoadMore = () => {
-    setVisibleCount((prevCount) => prevCount + ITEMS_PER_PAGE);
-  };
+    const handleLoadMore = () => {
+        setVisibleCount((prevCount) => prevCount + ITEMS_PER_PAGE);
+    };
 
-  const visibleItems = itens.slice(0, visibleCount);
-  const hasMoreItems = visibleCount < itens.length;
+    const visibleItems = itens.slice(0, visibleCount);
+    const hasMoreItems = visibleCount < itens.length;
+    const hasNoItems = !loading && !error && itens.length === 0;
 
   if (loading) {
     return (
@@ -41,6 +42,28 @@ function Items_Page() {
           >
             Tentar novamente
           </button>
+        </div>
+        <Footer_Pages />
+      </div>
+    );
+  }
+
+  if (hasNoItems) {
+    return (
+      <div>
+        <Header_pages />
+        <h1 className="font-epilogue text-3xl ml-30 mt-10 mb-10">Itens disponíveis</h1>
+        <div className="flex ml-30 gap-20">
+          <Menu_lateral />
+          <div className="w-2/3 p-10 flex flex-col items-center justify-center h-64">
+            <p className="text-gray-600 text-xl">Nenhum item disponível no momento</p>
+            <button 
+              onClick={refreshItens}
+              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            >
+              Recarregar
+            </button>
+          </div>
         </div>
         <Footer_Pages />
       </div>

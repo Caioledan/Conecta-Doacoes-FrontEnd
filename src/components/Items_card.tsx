@@ -12,7 +12,7 @@ function Items_card({ item }: ItemsCardProps) {
 
   return (
     <a href={`/item/${item.id}`} className="hover:scale-102 duration-200 transform">
-      <div className="min-w-70 w-70 h-100 bg-white border flex flex-col justify-center items-center text-start font-epilogue rounded-xl">
+      <div className="min-w-70 w-70 h-100 bg-white border flex flex-col justify-center items-center text-start font-epilogue rounded-xl overflow-hidden">
         {imageSrc && (
           <img
             src={imageSrc}

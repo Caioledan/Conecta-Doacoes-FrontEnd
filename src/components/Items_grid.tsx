@@ -8,6 +8,14 @@ interface ItemsGridProps {
 }
 
 function Items_grid({ items, onLoadMore, hasMore }: ItemsGridProps) {
+    if (!Array.isArray(items)) {
+        return (
+        <div className="font-epilogue w-2/3 p-10 flex items-center justify-center">
+            <div className="">Não há itens disponíveis</div>
+        </div>
+        );
+    }
+
     return (
         <div className="font-epilogue w-2/3 p-10">
             <div className="grid grid-cols-3 justify-items-center space-y-10">

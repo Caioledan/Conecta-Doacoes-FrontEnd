@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import IconeUsuario from "./Icone_user";
 import { useUser } from "../hooks/useUser";
 import { useEffect } from "react";
@@ -25,15 +24,6 @@ export default function Card_profile() {
             Tel: {loading ? "Carregando..." : user?.telefone}
           </p>
         </div>
-      </div>
-
-      <div className="text-center">
-        <Link
-          to="/editar-perfil"
-          className="font-epilogue text-lg lg:text-xl font-normal text-conecta-blue underline hover:text-blue-600 transition-colors"
-        >
-          editar dados
-        </Link>
       </div>
     </div>
   );

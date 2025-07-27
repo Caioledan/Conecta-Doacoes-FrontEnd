@@ -15,7 +15,7 @@ function Header_pages(){
                 <ul className="flex items-center justify-around gap-5 w-175 h-10 text-white">
                     < Dropdown />
                     <li className="text-xl hover:cursor-pointer"><a href="#">Chats</a></li>
-                    <li className="text-xl hover:cursor-pointer"><a href="#">Meu perfil</a></li>
+                    <li className="text-xl hover:cursor-pointer"><a href="/profile">Meu perfil</a></li>
                     <li className="text-xl hover:cursor-pointer"><a href="#">Ajuda</a></li>
                 </ul> 
             </div>
