@@ -16,6 +16,16 @@ export class itensApi {
     });
   }
 
+  static async getItensTroca(): Promise<Itens[]> {
+    const response = await api.get<Itens[]>("/itens/tipo/TROCA");
+    return response.data;
+  }
+
+  static async getItensDoacao(): Promise<Itens[]> {
+    const response = await api.get<Itens[]>("/itens/tipo/DOACAO");
+    return response.data;
+  }
+
   static async getPorCategoria(categoria: string): Promise<Itens[]> {
       const response = await api.get<Itens[]>(`/itens/categoria/${categoria}`);
       return response.data;
