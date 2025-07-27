@@ -66,6 +66,20 @@ export const useItens = () => {
     }
   };
 
+  //   const fetchItensTipo = async () => {
+  //   try {
+  //     setLoading(true);
+  //     setError(null);
+  //     const data = await itensApi.getItensDoacao();
+  //     setItens(data);
+  //   } catch (err) {
+  //     setError("Erro ao carregar itens para doação");
+  //     console.error("Erro na requisição:", err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   useEffect(() => {
     fetchItens();
   }, []);

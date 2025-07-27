@@ -34,4 +34,5 @@ export class itensApi {
     const response = await api.get<Itens[]>(`/itens/categoria/${categoria}`);
     return response.data;
   }
+
 }
