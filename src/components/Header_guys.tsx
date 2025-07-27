@@ -1,9 +1,11 @@
-function Header_guys(){
-    return (
-        <div className="2xl:mt-24 xl:mt-38">
-            <img src="./src/assets/images/header_guys.png" alt="" className="max-w-none 2xl:w-160 xl:w-130"/>
-        </div>
-    )
+function Header_guys() {
+  return (
+    <img
+      src="./src/assets/images/header_guys.png"
+      alt="Pessoas conectadas"
+      className="w-full h-auto object-contain min-h-64 sm:max-w-72 [820]:max-w-100 lg:max-w-72 xl:max-w-100 2xl:max-w-2xl"
+    />
+  );
 }
 
 export default Header_guys;

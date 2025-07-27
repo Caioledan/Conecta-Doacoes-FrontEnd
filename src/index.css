@@ -18,14 +18,14 @@ body {
 }
 
 /* Container responsivo */
-.container {
+/* .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
-}
+} */
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .container {
     padding: 0 2rem;
   }
@@ -41,14 +41,14 @@ body {
   .container {
     max-width: 1280px;
   }
-}
+} */
 
 @utility no-scrollbar {
   @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
 }
 
 /* Utility classes para responsividade */
-@utility responsive-grid {
+/* @utility responsive-grid {
   @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4;
 }
 
@@ -62,7 +62,7 @@ body {
 
 @utility responsive-spacing {
   @apply p-4 sm:p-6 lg:p-8;
-}
+} */
 
 @theme {
   --color-dark-green: #388E3C;
@@ -83,7 +83,7 @@ body {
 }
 
 /* Media queries para desktop */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   html {
     font-size: 18px;
   }
@@ -101,13 +101,11 @@ body {
   }
 }
 
-/* Garantir que imagens sejam responsivas */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Cards responsivos */
 .card-responsive {
   width: 100%;
   max-width: 100%;
@@ -129,4 +127,4 @@ img {
   .card-responsive {
     max-width: calc(25% - 0.75rem);
   }
-}
+} */
