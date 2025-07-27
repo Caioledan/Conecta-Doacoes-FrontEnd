@@ -1,8 +1,10 @@
+import Logo_footer from "../assets/images/logo_footer.png"
+
 function Footer_main(){
     return (
         <footer className="bg-solidarity-orange h-80 flex justify-center items-center gap-40 font-epilogue text-white">
             <div>
-                <img src="src\assets\images\logo_footer.png" alt="" className="h-30"/>
+                <img src={Logo_footer} alt="Logo Rodapé" className="h-30"/>
             </div>
  
             <div className="flex flex-col gap-10 ">
