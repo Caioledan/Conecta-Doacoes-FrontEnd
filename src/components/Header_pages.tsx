@@ -15,7 +15,6 @@ function Header_pages() {
             <div className="bg-calm-blue h-20 flex items-center">
                 <ul className="flex items-center justify-around gap-5 w-175 h-10 text-white">
                     <Dropdown />
-                    <li className="text-xl hover:cursor-pointer"><a href="#">Chats</a></li>
                     <li className="text-xl hover:cursor-pointer"><a href="/profile">Meu perfil</a></li>
                     <li className="text-xl hover:cursor-pointer"><a href="#">Ajuda</a></li>
                 </ul>

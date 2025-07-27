@@ -33,9 +33,6 @@ function Header_profile() {
       <div className="bg-blue-600 h-20 flex items-center">
         <ul className="flex items-center justify-around gap-5 w-175 h-10 text-white">
           <Dropdown />
-          <li className="text-xl hover:cursor-pointer">
-            <a href="#">Chats</a>
-          </li>
           <li 
             className="text-xl hover:cursor-pointer"
             onClick={handleProfileClick}
