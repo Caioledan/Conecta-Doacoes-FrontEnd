@@ -10,11 +10,13 @@ export const useCadastroItem = () => {
     categoria: "",
     condicao: "",
     localizacao: "",
+    usuarioId: 1,
   });
 
   const [arquivoImagem, setArquivoImagem] = useState<File | null>(null);
   const [sucesso, setSucesso] = useState<boolean>(false);
-  const [erro, setErro] = useState<string | null>(null); // Opcional: para exibir mensagens de erro
+  const [erro, setErro] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -32,7 +34,6 @@ export const useCadastroItem = () => {
     }
   };
 
-  // Função para limpar o formulário
   const resetForm = () => {
     setItemFormData({
       nome: "",
@@ -40,6 +41,7 @@ export const useCadastroItem = () => {
       categoria: "",
       condicao: "",
       localizacao: "",
+      usuarioId: 1,
     });
     setArquivoImagem(null);
   };
@@ -48,42 +50,57 @@ export const useCadastroItem = () => {
     event.preventDefault();
     setSucesso(false);
     setErro(null);
+    setIsLoading(true);
 
     if (!arquivoImagem) {
       alert("Por favor, adicione uma imagem para o item.");
+      setIsLoading(false);
       return;
     }
 
-    const formData = new FormData();
-    formData.append("nome", itemFormData.nome);
-    formData.append("descricao", itemFormData.descricao);
-    formData.append("categoria", itemFormData.categoria.toUpperCase());
-    formData.append("condicao", itemFormData.condicao.toUpperCase());
-    formData.append("localizacao", itemFormData.localizacao.toUpperCase());
-    formData.append("arquivoImagem", arquivoImagem);
-    formData.append("usuarioId", "1");
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ": ", pair[1]);
-    }
-
     try {
-      const responseData = await itensApi.cadastrarItem(formData);
-      alert("Item cadastrado com sucesso!");
-      console.log("Resposta da API:", responseData);
+      const formData = new FormData();
+      
 
-      setSucesso(true); // Define o sucesso para disparar o redirecionamento
-      resetForm(); // Limpa o formulário
-    } catch (error) {
-      alert("Erro ao cadastrar o item!");
-      setSucesso(false);
+      formData.append("nome", itemFormData.nome.trim());
+      formData.append("descricao", itemFormData.descricao.trim());
+      formData.append("categoria", itemFormData.categoria.toUpperCase());
+      formData.append("condicao", itemFormData.condicao.toUpperCase());
+      formData.append("localizacao", itemFormData.localizacao.toUpperCase());
+      formData.append("usuarioId", itemFormData.usuarioId.toString());
+      
 
-      if (axios.isAxiosError(error)) {
-        console.error("Detalhes do erro da API:", error.response?.data);
-        setErro(error.response?.data?.message || "Ocorreu um erro na API.");
-      } else {
-        console.error("Erro inesperado:", error);
-        setErro("Ocorreu um erro inesperado.");
+      formData.append("arquivoImagem", arquivoImagem);
+
+      console.log("Dados sendo enviados:");
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
       }
+
+      const response = await itensApi.cadastrarItem(formData);
+      
+      if (response) {
+        alert("Item cadastrado com sucesso!");
+        setSucesso(true);
+        resetForm();
+      }
+    } catch (error) {
+      console.error("Erro detalhado:", error);
+      
+      let errorMessage = "Erro ao cadastrar o item";
+      if (axios.isAxiosError(error)) {
+        errorMessage = error.response?.data?.message || 
+                      error.response?.data?.error || 
+                      error.message || 
+                      "Erro na comunicação com o servidor";
+        
+        console.error("Detalhes do erro:", error.response?.data);
+      }
+      
+      setErro(errorMessage);
+      alert(errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -91,7 +108,8 @@ export const useCadastroItem = () => {
     itemFormData,
     arquivoImagem,
     sucesso,
-    erro, // Retorna o erro se quiser exibi-lo na UI
+    erro,
+    isLoading,
     handleChange,
     handleFileChange,
     cadastrarItem,

@@ -77,10 +77,10 @@ export default function Form_Cadastrar_item() {
                   Selecione
                 </option>
                 {/* CORREÇÃO: Valores ajustados para provável correspondência com o Enum do backend */}
-                <option value="ROUPAS">Roupas</option>
-                <option value="ELETRONICOS">Eletrônicos</option>
-                <option value="LIVROS">Livros</option>
-                <option value="MOVEIS">Móveis</option>
+                <option value="ROUPA">Roupas</option>
+                <option value="ELETRONICO">Eletrônicos</option>
+                <option value="LIVRO">Livros</option>
+                <option value="MOVEL">Móveis</option>
               </select>
               <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500 w-[15px]" />
             </div>

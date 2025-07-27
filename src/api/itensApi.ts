@@ -8,9 +8,12 @@ export class itensApi {
     return response.data;
   }
   
-    static async cadastrarItem(itemFormData: FormData): Promise<Itens> {
-    const response = await api.post<Itens>("/itens/cadastrar", itemFormData);
-    return response.data;
+  static async cadastrarItem(formData: FormData): Promise<Itens> {
+    return api.post("/itens/cadastrar", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   }
 
   static async getPorCategoria(categoria: string): Promise<Itens[]> {
