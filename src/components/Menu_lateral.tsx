@@ -1,18 +1,25 @@
 type FilterType = 'TODOS' | 'DOACAO' | 'TROCA';
 
 interface MenuLateralProps {
-  onFilterChange: (type: FilterType) => void;
-  currentFilter: FilterType;
-  onCategoryChange: (category: string) => void;
+
+  onFilterTypeChange: (type: FilterType) => void;
+  onCategoryChange: (category: string | null) => void;
+  onLocationChange: (location: string | null) => void;
+  
+  currentFilterType: FilterType;
   currentCategory: string | null;
+  currentLocation: string | null;
 }
 
 function Menu_lateral({ 
-  onFilterChange, 
-  currentFilter,
-  onCategoryChange,
-  currentCategory 
+  onFilterTypeChange, 
+  onCategoryChange, 
+  onLocationChange,
+  currentFilterType,
+  currentCategory,
+  currentLocation
 }: MenuLateralProps) {
+
   const categories = [
     { value: 'ELETRONICO', label: 'Eletrônicos' },
     { value: 'LIVRO', label: 'Livros' },
@@ -27,17 +34,37 @@ function Menu_lateral({
     { value: 'GUANABARA', label: 'Guanabara' }
   ];
 
+  const handleCategoryClick = (category: string) => {
+    onCategoryChange(category);
+    onLocationChange(null);
+    onFilterTypeChange('TODOS');
+  };
+
+  const handleLocationClick = (location: string) => {
+    onLocationChange(location);
+    onCategoryChange(null);
+    onFilterTypeChange('TODOS');
+  };
+
+  const handleTypeClick = (type: FilterType) => {
+    onFilterTypeChange(type);
+    onCategoryChange(null);
+    onLocationChange(null);
+  };
+  
+  const handleTodosClick = () => {
+    onCategoryChange(null);
+    onLocationChange(null);
+    onFilterTypeChange('TODOS');
+  };
+
   return (
-    <div className="font-epilogue w-40">
+    <div className="font-epilogue w-48">
       <button
-        onClick={() => {
-          onFilterChange('TODOS');
-          onCategoryChange('');
-        }}
+        onClick={handleTodosClick}
         className={`font-bold mb-1 w-full text-left hover:text-blue-600 ${
-          currentFilter === 'TODOS' && !currentCategory 
-            ? 'text-blue-700 font-medium' 
-            : ''
+          currentFilterType === 'TODOS' && !currentCategory && !currentLocation 
+            ? 'text-blue-700 font-medium' : ''
         }`}
       >
         Todos
@@ -48,14 +75,9 @@ function Menu_lateral({
         {categories.map((category) => (
           <li key={category.value}>
             <button
-              onClick={() => {
-                onCategoryChange(category.value);
-                onFilterChange('TODOS');
-              }}
+              onClick={() => handleCategoryClick(category.value)}
               className={`w-full text-left hover:text-blue-600 ${
-                currentCategory === category.value 
-                  ? 'text-blue-700 font-medium' 
-                  : ''
+                currentCategory === category.value ? 'text-blue-700 font-medium' : ''
               }`}
             >
               {category.label}
@@ -68,9 +90,14 @@ function Menu_lateral({
       <ul className="space-y-1 mb-3 ml-8">
         {locations.map((location) => (
           <li key={location.value}>
-            <a href="#" className="hover:text-blue-600">
+            <button
+              onClick={() => handleLocationClick(location.value)}
+              className={`w-full text-left hover:text-blue-600 ${
+                currentLocation === location.value ? 'text-blue-700 font-medium' : ''
+              }`}
+            >
               {location.label}
-            </a>
+            </button>
           </li>
         ))}
       </ul>
@@ -79,14 +106,9 @@ function Menu_lateral({
       <ul className="space-y-1 mb-3 ml-8">
         <li>
           <button
-            onClick={() => {
-              onFilterChange('TROCA');
-              onCategoryChange('');
-            }}
+            onClick={() => handleTypeClick('TROCA')}
             className={`w-full text-left hover:text-blue-600 ${
-              currentFilter === 'TROCA' 
-                ? 'text-blue-700 font-medium' 
-                : ''
+              currentFilterType === 'TROCA' && !currentCategory && !currentLocation ? 'text-blue-700 font-medium' : ''
             }`}
           >
             Troca
@@ -94,14 +116,9 @@ function Menu_lateral({
         </li>
         <li>
           <button
-            onClick={() => {
-              onFilterChange('DOACAO');
-              onCategoryChange('');
-            }}
+            onClick={() => handleTypeClick('DOACAO')}
             className={`w-full text-left hover:text-blue-600 ${
-              currentFilter === 'DOACAO' 
-                ? 'text-blue-700 font-medium' 
-                : ''
+              currentFilterType === 'DOACAO' && !currentCategory && !currentLocation ? 'text-blue-700 font-medium' : ''
             }`}
           >
             Doação

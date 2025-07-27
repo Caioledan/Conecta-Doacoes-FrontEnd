@@ -22,7 +22,6 @@ function MidHeaderHome(){
             <nav>
                 <ul className="flex items-center justify-around gap-5 w-175 h-10 text-white">
                     < Dropdown />
-                    <li className="text-xl hover:cursor-pointer"><a href="#">Chats</a></li>
                     {isLogged && <li className="text-xl hover:cursor-pointer"><a href="/profile">Meu perfil</a></li>
                     }
                     
