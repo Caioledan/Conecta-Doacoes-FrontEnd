@@ -161,6 +161,8 @@ export default function Form_Cadastrar_item() {
                 </option>
                 <option value="CENTRO">Centro</option>
                 <option value="VILA">Vila</option>
+                <option value="CIDADE_UNIVERSITARIA">Cidade Universitária</option>
+                <option value="GUANABARA">Guanabara</option>
               </select>
               <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500 w-[15px]" />
             </div>

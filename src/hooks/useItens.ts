@@ -7,12 +7,14 @@ export const useItens = () => {
   const [currentItem, setCurrentItem] = useState<Itens | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [filterCategory, setFilterCategory] = useState<string | null>(null);
+  const [filterType, setFilterType] = useState<'TODOS' | 'DOACAO' | 'TROCA'>('TODOS');
 
-  const fetchItens = async () => {
+  const fetchData = async (fetchFunction: () => Promise<Itens[]>) => {
     try {
       setLoading(true);
       setError(null);
-      const data = await itensApi.getItens();
+      const data = await fetchFunction();
       setItens(data);
     } catch (err) {
       setError("Erro ao carregar itens");
@@ -20,6 +22,14 @@ export const useItens = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const fetchItens = async () => {
+    await fetchData(() => 
+      filterCategory 
+        ? itensApi.getPorCategoria(filterCategory) 
+        : itensApi.getItens()
+    );
   };
 
   const fetchItemById = async (id: number) => {
@@ -39,46 +49,52 @@ export const useItens = () => {
   };
 
   const fetchItensTroca = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await itensApi.getItensTroca();
-      setItens(data);
-    } catch (err) {
-      setError("Erro ao carregar itens para troca");
-      console.error("Erro na requisição:", err);
-    } finally {
-      setLoading(false);
-    }
+    await fetchData(() => 
+      filterCategory
+        ? itensApi.getPorCategoria(filterCategory).then(items => 
+            items.filter(item => item.tipo === 'TROCA'))
+        : itensApi.getItensTroca()
+    );
   };
 
   const fetchItensDoacao = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await itensApi.getItensDoacao();
-      setItens(data);
-    } catch (err) {
-      setError("Erro ao carregar itens para doação");
-      console.error("Erro na requisição:", err);
-    } finally {
-      setLoading(false);
-    }
+    await fetchData(() => 
+      filterCategory
+        ? itensApi.getPorCategoria(filterCategory).then(items => 
+            items.filter(item => item.tipo === 'DOACAO'))
+        : itensApi.getItensDoacao()
+    );
+  };
+
+  const fetchPorCategoria = async (categoria: string) => {
+    setFilterCategory(categoria);
   };
 
   useEffect(() => {
-    fetchItens();
-  }, []);
+    if (filterType === 'TODOS') {
+      fetchItens();
+    } else if (filterType === 'DOACAO') {
+      fetchItensDoacao();
+    } else if (filterType === 'TROCA') {
+      fetchItensTroca();
+    }
+  }, [filterType, filterCategory]);
 
   const refreshItens = () => {
+    setFilterCategory(null);
+    setFilterType('TODOS');
     fetchItens();
   };
 
   const refreshItensTroca = () => {
+    setFilterCategory(null);
+    setFilterType('TROCA');
     fetchItensTroca();
   };
 
   const refreshItensDoacao = () => {
+    setFilterCategory(null);
+    setFilterType('DOACAO');
     fetchItensDoacao();
   };
 
@@ -87,11 +103,15 @@ export const useItens = () => {
     currentItem,
     loading,
     error,
+    filterCategory,
+    filterType,
     fetchItemById,
     refreshItens,
     fetchItens,
     fetchItensTroca,
     fetchItensDoacao,
+    fetchPorCategoria,
+    setFilterType,
     refreshItensTroca,
     refreshItensDoacao,
   };

@@ -22,7 +22,7 @@ function Items_card({ item }: ItemsCardProps) {
           <img
             src={imageSrc}
             alt={item.nome}
-            className="max-h-45 w-full object-cover"
+            className="max-h-45 w-full object-contain"
           />
         )}
         
