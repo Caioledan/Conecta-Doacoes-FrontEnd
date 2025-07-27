@@ -19,6 +19,7 @@ export interface Itens {
   nome: string;
   descricao: string;
   categoria: string;
+  tipo: string;
   condicao: string;
   localizacao: string;
   usuario: Usuario;

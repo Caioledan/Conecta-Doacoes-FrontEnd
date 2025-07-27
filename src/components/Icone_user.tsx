@@ -1,4 +1,4 @@
-import iconeUser from "/home/guidev/Faculdade/Web/Trabalho final/frontend/Conecta-Doacoes-FrontEnd/src/assets/images/Icone_user.png"; // ajuste o caminho se necessário
+import iconeUser from "../assets/images/Icone_user.png"; 
 
 function IconeUsuario() {
   return (
