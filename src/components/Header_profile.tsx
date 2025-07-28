@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import Dropdown from "./Dropdown";
 import { useNavigate } from "react-router-dom";
+import Logo_cortada from "../assets/images/logo-cortada.png"
 
 function Header_profile() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function Header_profile() {
       <div className="h-30 flex justify-between p-4 items-center mx-4">
         <a href="/">
           <img
-            src="src/assets/images/logo-cortada.png"
+            src={Logo_cortada}
             alt=""
             className="h-20"
           />

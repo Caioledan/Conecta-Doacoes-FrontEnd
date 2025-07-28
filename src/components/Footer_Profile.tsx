@@ -1,8 +1,11 @@
+import logo_footer from "../assets/images/logo_footer.png"
+
+
 function Footer_Profile() {
   return (
     <div className="bg-gray-700 font-epilogue text-white flex justify-around h-50 items-center gap-50">
       <img
-        src="src\assets\images\logo_footer_pages.png"
+        src={logo_footer}
         alt=""
         className="h-20"
       />
