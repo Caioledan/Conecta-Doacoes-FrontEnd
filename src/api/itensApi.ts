@@ -40,4 +40,9 @@ export class itensApi {
     return response.data;
   }
 
+  static async searchByName(nome: string): Promise<Itens[]> {
+    const response = await api.get<Itens[]>(`/itens/search/${encodeURIComponent(nome)}`);
+    return response.data;
+  }
+
 }
