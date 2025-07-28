@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
-import SearchBar from "./SearchBar";
 
 
 function MidHeaderHome(){
