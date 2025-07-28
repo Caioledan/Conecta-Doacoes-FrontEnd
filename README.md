@@ -61,7 +61,7 @@ Para que o front-end funcione corretamente, o back-end (conecta-doacoes-back-api
 
 ## Link para a aplicação publicada
 
-> _(Adicione aqui o link da aplicação em produção, se disponível)_
+> https://conecta-doacoes.vercel.app/
 
 ---
 
