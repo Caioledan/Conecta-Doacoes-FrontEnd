@@ -12,7 +12,7 @@ function Footer_Pages() {
                     <li>contato@sconecta.com</li>
                 </ul>
                 <ul className="flex flex-col gap-6">
-                    <a href=""><li>FAQ's</li></a>
+                    <a href="/FAQ"><li>FAQ's</li></a>
                     <li>(505)555-0125</li>
                 </ul>
             </div>

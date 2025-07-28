@@ -6,6 +6,8 @@ import Items_Page from "./pages/Items_page";
 import Profile from "./pages/Profile_page";
 import Cadastro_itens_page from "./pages/Cadastro_itens_page";
 import Item_page from "./pages/Item_page";
+import FAQ_page from "./pages/FAQ_page";
+
 function AppRoutes() {
   return (
     <BrowserRouter>
@@ -18,6 +20,7 @@ function AppRoutes() {
         <Route path="/cadastroItem" element={<Cadastro_itens_page />}></Route>
         <Route path="/Item" element={<Item_page />}></Route>
         <Route path="/item/:id" element={<Item_page />} />
+        <Route path="/FAQ" element={<FAQ_page/>}/>
       </Routes>
     </BrowserRouter>
   );

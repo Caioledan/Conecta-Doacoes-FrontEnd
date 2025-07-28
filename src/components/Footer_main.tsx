@@ -12,7 +12,7 @@ function Footer_main(){
                     <a className="hover:cursor-pointer"><li>Sobre nós</li></a>
                     <a className="hover:cursor-pointer"><li>Gerenciamento</li></a>
                     <a className="hover:cursor-pointer"><li>Projeto</li></a>
-                    <a className="hover:cursor-pointer"><li>FAQ's</li></a>
+                    <a className="hover:cursor-pointer" href="/FAQ"><li>FAQ's</li></a>
                 </ul>
                 <ul className="flex justify-around items-center">
                     <li>contato@conecta.com</li>

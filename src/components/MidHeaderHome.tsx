@@ -25,7 +25,7 @@ function MidHeaderHome(){
                     {isLogged && <li className="text-xl hover:cursor-pointer"><a href="/profile">Meu perfil</a></li>
                     }
                     
-                    <li className="text-xl hover:cursor-pointer"><a href="#">Ajuda</a></li>
+                    <li className="text-xl hover:cursor-pointer"><a href="/FAQ">Ajuda</a></li>
                 </ul>
             </nav>
         </div>

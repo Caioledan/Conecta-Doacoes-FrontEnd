@@ -40,7 +40,7 @@ function Header_profile() {
             Meu perfil
           </li>
           <li className="text-xl hover:cursor-pointer">
-            <a href="#">Ajuda</a>
+            <a href="/FAQ">Ajuda</a>
           </li>
         </ul>
       </div>
