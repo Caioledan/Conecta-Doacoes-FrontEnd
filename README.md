@@ -61,7 +61,7 @@ Para que o front-end funcione corretamente, o back-end (conecta-doacoes-back-api
 
 ## Link para a aplicação publicada
 
-> _(Adicione aqui o link da aplicação em produção, se disponível)_
+> https://conecta-doacoes.vercel.app/
 
 ---
 
@@ -77,7 +77,7 @@ Para que o front-end funcione corretamente, o back-end (conecta-doacoes-back-api
 - Diego da Silva Ribeiro
 - Guilherme Silva Sales
 - Lydiana Rodrigues de Oliveira
-- Mahatma Gandhi Perreira Leite
+- Mahatma Gandhi Pereira Leite
 - Victor Ravel Santos Cavalcante
 
 ---
