@@ -1,4 +1,4 @@
-import logo_footer from "../assets/images/logo_footer.png"
+import logo_footer from "../assets/images/logo_footer_pages.png"
 
 
 function Footer_Profile() {
