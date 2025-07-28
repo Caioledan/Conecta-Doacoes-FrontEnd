@@ -160,7 +160,7 @@ export default function Form_Cadastrar_item() {
                   Selecione
                 </option>
                 <option value="CENTRO">Centro</option>
-                <option value="VILA">Vila</option>
+                <option value="VILA_MATOSO">Vila</option>
                 <option value="CIDADE_UNIVERSITARIA">Cidade Universitária</option>
                 <option value="GUANABARA">Guanabara</option>
               </select>
